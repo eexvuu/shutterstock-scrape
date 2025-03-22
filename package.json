@@ -2,11 +2,11 @@
   "name": "shutterstock-scraping-metadata",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "eexvuu",
   "license": "ISC",
   "dependencies": {
     "jsdom": "^24.0.0"
