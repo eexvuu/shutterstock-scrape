@@ -19,7 +19,9 @@ async function scrape(url) {
     const response = await fetch(url, requestOptions);
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch URL: ${response.status} ${response.statusText}`);
+      throw new Error(
+        `Failed to fetch URL: ${response.status} ${response.statusText}`
+      );
     }
 
     const result = await response.text();
@@ -45,10 +47,17 @@ async function scrape(url) {
     try {
       const asset = jsonData?.props?.pageProps?.asset;
       if (!asset) {
-        throw new Error("Could not find the 'asset' property in the JSON data.");
+        throw new Error(
+          "Could not find the 'asset' property in the JSON data."
+        );
       }
 
       obj.contributor = asset.contributor?.displayName || null;
+      obj.type = asset.type || null;
+      obj.preview =
+        asset.type === "videos"
+          ? asset.previewImageUrl || null
+          : asset.src || null;
       obj.description = asset.description || null;
       obj.keywords = asset.keywords || null;
       obj.categories = Array.isArray(asset.categories)
